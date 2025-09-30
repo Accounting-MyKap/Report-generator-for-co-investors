@@ -1,0 +1,5 @@
+{
+  "name": "Generador de Informes MyKap",
+  "description": "Una aplicación para cargar un archivo de Excel con datos de préstamos, seleccionar las columnas deseadas y generar un informe profesional en formato PDF.",
+  "requestFramePermissions": []
+}
