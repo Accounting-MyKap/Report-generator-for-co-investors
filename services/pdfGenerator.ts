@@ -1,5 +1,5 @@
-import type { TableRow } from '../types';
-import { MYKAP_LOGO_URL } from '../constants';
+import type { TableRow } from '../types.ts';
+import { MYKAP_LOGO_URL } from '../constants.ts';
 
 // Let TypeScript know that the jspdf object is available globally from the CDN script
 declare const jspdf: any;

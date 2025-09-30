@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react';
-import { UploadIcon } from './Icons';
-import Spinner from './Spinner';
+import { UploadIcon } from './Icons.tsx';
+import Spinner from './Spinner.tsx';
 
 interface FileUploadProps {
   onFileSelect: (file: File | null) => void;

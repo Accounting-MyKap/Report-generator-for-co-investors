@@ -1,13 +1,13 @@
 import React, { useState, useCallback, useRef } from 'react';
-import Header from './components/Header';
-import FileUpload from './components/FileUpload';
-import ColumnSelector from './components/ColumnSelector';
-import ReportPreview from './components/ReportPreview';
-import { parseExcelFile } from './services/excelParser';
-import { generatePdf } from './services/pdfGenerator';
-import type { TableRow } from './types';
-import { FileIcon, ResetIcon } from './components/Icons';
-import Spinner from './components/Spinner';
+import Header from './components/Header.tsx';
+import FileUpload from './components/FileUpload.tsx';
+import ColumnSelector from './components/ColumnSelector.tsx';
+import ReportPreview from './components/ReportPreview.tsx';
+import { parseExcelFile } from './services/excelParser.ts';
+import { generatePdf } from './services/pdfGenerator.ts';
+import type { TableRow } from './types.ts';
+import { FileIcon, ResetIcon } from './components/Icons.tsx';
+import Spinner from './components/Spinner.tsx';
 
 // Let TypeScript know html2canvas is available globally
 declare const html2canvas: any;

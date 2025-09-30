@@ -1,5 +1,5 @@
 import React from 'react';
-import { MyKapLogo } from './Icons';
+import { MyKapLogo } from './Icons.tsx';
 
 const Header: React.FC = () => {
   return (
