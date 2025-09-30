@@ -1,7 +1,7 @@
 {
   "headers": [
     {
-      "source": "/.*\\.tsx",
+      "source": "/(.*)\\.tsx",
       "headers": [
         {
           "key": "Content-Type",
@@ -10,7 +10,7 @@
       ]
     },
     {
-      "source": "/.*\\.ts",
+      "source": "/(.*)\\.ts",
       "headers": [
         {
           "key": "Content-Type",

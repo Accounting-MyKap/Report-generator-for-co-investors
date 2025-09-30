@@ -1,8 +1,5 @@
 {
   "name": "report-generator-mykap",
   "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "build": "echo 'No build step required. Deploying static files.'"
-  }
+  "private": true
 }
