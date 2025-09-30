@@ -1,9 +1,6 @@
 import { TableRow } from '../types.ts';
 import { MYKAP_LOGO_URL } from '../constants.ts';
 
-// Let TypeScript know that the jspdf object is available globally from the CDN script
-declare const jspdf: any;
-
 /**
  * Fetches an image from a URL and converts it to a Base64 data URL.
  * @param url The URL of the image to fetch.
@@ -127,7 +124,7 @@ export const generatePdf = async (
   data: TableRow[]
 ): Promise<void> => {
   try {
-    const doc = new jspdf.jsPDF('l', 'mm', 'a4');
+    const doc = new (window as any).jspdf.jsPDF('l', 'mm', 'a4');
     const pageWidth = doc.internal.pageSize.getWidth();
 
     // Add MyKap Logo

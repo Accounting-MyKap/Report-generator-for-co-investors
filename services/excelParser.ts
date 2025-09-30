@@ -1,8 +1,5 @@
 import { TableRow } from '../types.ts';
 
-// Let TypeScript know that the XLSX object is available globally from the CDN script
-declare const XLSX: any;
-
 interface ParsedExcelData {
   headers: string[];
   data: TableRow[];
@@ -19,7 +16,7 @@ export const parseExcelFile = (file: File): Promise<ParsedExcelData> => {
 
       try {
         const data = event.target.result;
-        const workbook = XLSX.read(data, {
+        const workbook = (window as any).XLSX.read(data, {
           type: 'binary',
           cellDates: true,
         });
@@ -28,7 +25,7 @@ export const parseExcelFile = (file: File): Promise<ParsedExcelData> => {
         const worksheet = workbook.Sheets[sheetName];
         
         // Use sheet_to_json to get an array of objects
-        const jsonData: TableRow[] = XLSX.utils.sheet_to_json(worksheet, {
+        const jsonData: TableRow[] = (window as any).XLSX.utils.sheet_to_json(worksheet, {
           raw: false, // Use formatted strings for dates
           dateNF: 'mm/dd/yyyy' // format for dates
         });

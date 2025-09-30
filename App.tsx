@@ -9,9 +9,6 @@ import { TableRow } from './types.ts';
 import { FileIcon, ResetIcon } from './components/Icons.tsx';
 import Spinner from './components/Spinner.tsx';
 
-// Let TypeScript know html2canvas is available globally
-declare const html2canvas: any;
-
 const DEFAULT_SELECTED_HEADERS = [
   'Loan Account', 'Borrower Name', 'Interest Rate', 'Maturity Date', 'Term Left', 'Regular Payment', 'Loan Balance'
 ];
@@ -115,7 +112,7 @@ const App: React.FC = () => {
     try {
         await new Promise(resolve => setTimeout(resolve, 100)); // Short delay for re-render
         
-        const canvas = await html2canvas(tableElement, {
+        const canvas = await (window as any).html2canvas(tableElement, {
             scale: 2, // Higher resolution
             backgroundColor: '#ffffff', // Explicit white background
             logging: false,
