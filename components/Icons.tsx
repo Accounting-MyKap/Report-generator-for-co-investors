@@ -29,7 +29,7 @@ export const ResetIcon = ({ className }: IconProps) => (
 );
 
 
-export const MyKapLogo: React.FC<React.ImgHTMLAttributes<HTMLImageElement>> = (props) => (
+export const MyKapLogo = (props: React.ImgHTMLAttributes<HTMLImageElement>) => (
     <img 
         src="https://storage.googleapis.com/assets_co-investment_simulator/logo.png" 
         alt="MyKap Logo" 
