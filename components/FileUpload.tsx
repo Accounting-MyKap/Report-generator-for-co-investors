@@ -7,7 +7,7 @@ interface FileUploadProps {
   isLoading: boolean;
 }
 
-const FileUpload: React.FC<FileUploadProps> = ({ onFileSelect, isLoading }) => {
+const FileUpload = ({ onFileSelect, isLoading }: FileUploadProps) => {
   const [isDragging, setIsDragging] = useState(false);
 
   const handleDragEnter = (e: React.DragEvent<HTMLDivElement>) => {

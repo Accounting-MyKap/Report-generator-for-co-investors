@@ -13,7 +13,7 @@ const DEFAULT_SELECTED_HEADERS = [
   'Loan Account', 'Borrower Name', 'Interest Rate', 'Maturity Date', 'Term Left', 'Regular Payment', 'Loan Balance'
 ];
 
-const App: React.FC = () => {
+const App = () => {
   const [file, setFile] = useState<File | null>(null);
   const [allHeaders, setAllHeaders] = useState<string[]>([]);
   const [data, setData] = useState<TableRow[]>([]);

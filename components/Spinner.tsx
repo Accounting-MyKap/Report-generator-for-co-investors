@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Spinner: React.FC = () => {
+const Spinner = () => {
   return (
     // A smaller, more modern spinner that inherits its color from the parent text color.
     <div 

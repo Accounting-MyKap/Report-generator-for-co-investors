@@ -8,7 +8,7 @@ interface ColumnSelectorProps {
   onDeselectAll: () => void;
 }
 
-const ColumnSelector: React.FC<ColumnSelectorProps> = ({ headers, selectedHeaders, onSelectionChange, onSelectAll, onDeselectAll }) => {
+const ColumnSelector = ({ headers, selectedHeaders, onSelectionChange, onSelectAll, onDeselectAll }: ColumnSelectorProps) => {
   return (
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row justify-between sm:items-center">

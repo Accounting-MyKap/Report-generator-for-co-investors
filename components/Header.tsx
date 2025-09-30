@@ -1,7 +1,7 @@
 import React from 'react';
 import { MyKapLogo } from './Icons.tsx';
 
-const Header: React.FC = () => {
+const Header = () => {
   return (
     <header className="bg-white border-b border-slate-200 sticky top-0 z-10">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
