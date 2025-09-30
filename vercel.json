@@ -1,9 +1,12 @@
 {
   "headers": [
     {
-      "source": "/(.*\\.(ts|tsx))",
+      "source": "/(.*\\.tsx?)",
       "headers": [
-        { "key": "Content-Type", "value": "text/javascript; charset=utf-8" }
+        {
+          "key": "Content-Type",
+          "value": "application/javascript; charset=utf-8"
+        }
       ]
     }
   ],
