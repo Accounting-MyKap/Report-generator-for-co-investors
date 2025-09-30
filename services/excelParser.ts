@@ -1,4 +1,4 @@
-import type { TableRow } from '../types.ts';
+import { TableRow } from '../types.ts';
 
 // Let TypeScript know that the XLSX object is available globally from the CDN script
 declare const XLSX: any;

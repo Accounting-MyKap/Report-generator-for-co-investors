@@ -1,5 +1,5 @@
 import React, { useMemo, forwardRef } from 'react';
-import type { TableRow } from '../types.ts';
+import { TableRow } from '../types.ts';
 
 interface ReportPreviewProps {
   headers: string[];
