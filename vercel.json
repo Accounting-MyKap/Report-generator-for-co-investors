@@ -1,11 +1,20 @@
 {
   "headers": [
     {
-      "source": "/(.*\\.tsx?)",
+      "source": "/(.*\\.tsx)",
       "headers": [
         {
           "key": "Content-Type",
-          "value": "application/javascript; charset=utf-8"
+          "value": "video/vnd.dlna.mpeg-tts"
+        }
+      ]
+    },
+    {
+      "source": "/(.*\\.ts)",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/typescript"
         }
       ]
     }
