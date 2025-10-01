@@ -39,20 +39,30 @@ export const generatePdf = async (
   try {
     const doc = new (window as any).jspdf.jsPDF('l', 'mm', 'a4');
     const pageWidth = doc.internal.pageSize.getWidth();
+    const pageMargin = 15;
+    const contentWidth = pageWidth - (pageMargin * 2);
 
-    // Add MyKap Logo
-    try {
-      const logoDataUrl = await getImageDataUrl(MYKAP_LOGO_URL);
-      doc.addImage(logoDataUrl, 'PNG', 15, 10, 40, 10);
-    } catch (e) {
-      // If logo fails, continue generating PDF without it
-      console.error("Could not add logo to PDF, proceeding without it.");
-    }
+    // --- Header Section ---
+
+    // 1. Blue Banner for the main title
+    const blueBannerY = 4; // Reduced from 10 to move it up
+    const blueBannerHeight = 20; // Slightly reduced height for compactness
+    doc.setFillColor(37, 72, 199); // MyKap Blue from table header
+    doc.rect(pageMargin, blueBannerY, contentWidth, blueBannerHeight, 'F');
+
+    // 2. Title Text
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(22); // Slightly smaller font for the new banner height
+    doc.setTextColor(255, 255, 255);
+    doc.text(title, pageWidth / 2, blueBannerY + blueBannerHeight / 2, { 
+      align: 'center', 
+      baseline: 'middle' 
+    });
     
-    // Header
-    doc.setFontSize(18);
-    doc.setTextColor(44, 62, 80); // Dark gray
-    doc.text(title, pageWidth / 2, 30, { align: 'center' });
+    // --- End of Header Section ---
+
+    // The table starts below the blue banner with less space
+    const tableStartY = blueBannerY + blueBannerHeight + 3; // Reduced space from 8 to 5
     
     // Prepare table data
     const tableData = data.map(row => 
@@ -114,10 +124,23 @@ export const generatePdf = async (
     if (loanBalanceIndex !== -1) {
         footerRow[loanBalanceIndex] = { content: formatCurrency(loanBalanceTotal), styles: { halign: 'right' } };
     }
+    
+    // Dynamic styling based on column count to fit on one page
+    let fontSize = 9.5;
+    let cellPadding = 2.5;
+    const columnCount = headers.length;
+
+    if (columnCount > 12) {
+      fontSize = 7;
+      cellPadding = 1.5;
+    } else if (columnCount > 8) {
+      fontSize = 8;
+      cellPadding = 2;
+    }
 
     // Generate table with professional styling
     (doc as any).autoTable({
-      startY: 40,
+      startY: tableStartY,
       head: [headers.map(toTitleCase)],
       body: tableData,
       foot: [footerRow],
@@ -137,8 +160,8 @@ export const generatePdf = async (
         lineColor: [44, 62, 80],
       },
       styles: {
-        fontSize: 9.5,
-        cellPadding: 2.5,
+        fontSize: fontSize,
+        cellPadding: cellPadding,
         overflow: 'ellipsize',
         halign: 'left', // Default align left for all cells
       },
@@ -148,7 +171,7 @@ export const generatePdf = async (
       alternateRowStyles: {
         fillColor: [248, 249, 250] // Very light gray for alternate rows
       },
-      margin: { top: 30, left: 15, right: 15 }
+      margin: { top: 2, bottom: 2, left: 15, right: 15 }
     });
 
     doc.save(`${title.replace(/\s/g, '_')}_informe.pdf`);

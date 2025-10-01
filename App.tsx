@@ -37,7 +37,7 @@ const App = () => {
     setIsLoadingFile(true);
     setError(null);
     setFile(selectedFile);
-    setReportTitle(selectedFile.name.replace(/\.[^/.]+$/, ""));
+    setReportTitle('Account Portfolio (Lender)');
 
     try {
       const { headers, data: parsedData } = await parseExcelFile(selectedFile);
@@ -212,7 +212,7 @@ const App = () => {
                     value={reportTitle}
                     onChange={(e) => setReportTitle(e.target.value)}
                     placeholder="E.g., Informe de Préstamos Q3"
-                    className="w-full max-w-lg block border-slate-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition"
+                    className="w-full max-w-lg block text-base text-slate-900 placeholder:text-slate-400 bg-white border border-slate-300 rounded-lg shadow-sm px-4 py-3 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-600"
                   />
                 </div>
                 
