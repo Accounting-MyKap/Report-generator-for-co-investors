@@ -2,34 +2,11 @@ import { TableRow } from '../types.ts';
 import { MYKAP_LOGO_URL } from '../constants.ts';
 import { toTitleCase, parseCurrency, formatCurrency, parsePercent } from './formatters.ts';
 
-/**
- * Fetches an image from a URL and converts it to a Base64 data URL.
- * @param url The URL of the image to fetch.
- * @returns A promise that resolves with the data URL.
- */
-const getImageDataUrl = (url: string): Promise<string> => {
-  return new Promise((resolve, reject) => {
-    fetch(url)
-      .then(response => {
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        return response.blob();
-      })
-      .then(blob => {
-        const reader = new FileReader();
-        reader.onloadend = () => {
-          resolve(reader.result as string);
-        };
-        reader.onerror = reject;
-        reader.readAsDataURL(blob);
-      })
-      .catch(error => {
-        console.error("Failed to fetch or process image for PDF:", error);
-        reject(error);
-      });
-  });
-};
+declare global {
+    interface Window {
+        jspdf: any;
+    }
+}
 
 export const generatePdf = async (
   title: string,
@@ -37,7 +14,7 @@ export const generatePdf = async (
   data: TableRow[]
 ): Promise<void> => {
   try {
-    const doc = new (window as any).jspdf.jsPDF('l', 'mm', 'a4');
+    const doc = new window.jspdf.jsPDF('l', 'mm', 'a4');
     const pageWidth = doc.internal.pageSize.getWidth();
     const pageMargin = 15;
     const contentWidth = pageWidth - (pageMargin * 2);

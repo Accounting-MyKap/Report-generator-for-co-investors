@@ -8,6 +8,8 @@ import { generatePdf } from './services/pdfGenerator.ts';
 import { TableRow } from './types.ts';
 import { FileIcon, ResetIcon } from './components/Icons.tsx';
 import Spinner from './components/Spinner.tsx';
+// Fix: Import 'html2canvas' to resolve 'Cannot find name' error.
+import html2canvas from 'html2canvas';
 
 const DEFAULT_SELECTED_HEADERS = [
   'Loan Account', 'Borrower Name', 'Interest Rate', 'Maturity Date', 'Term Left', 'Regular Payment', 'Loan Balance'
@@ -112,7 +114,7 @@ const App = () => {
     try {
         await new Promise(resolve => setTimeout(resolve, 100)); // Short delay for re-render
         
-        const canvas = await (window as any).html2canvas(tableElement, {
+        const canvas = await html2canvas(tableElement, {
             scale: 2, // Higher resolution
             backgroundColor: '#ffffff', // Explicit white background
             logging: false,

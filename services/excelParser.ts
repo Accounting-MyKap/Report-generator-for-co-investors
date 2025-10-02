@@ -1,3 +1,5 @@
+// Fix: Import 'XLSX' from the 'xlsx' library to fix "Cannot find name 'XLSX'" errors.
+import * as XLSX from 'xlsx';
 import { TableRow } from '../types.ts';
 
 interface ParsedExcelData {
@@ -16,7 +18,7 @@ export const parseExcelFile = (file: File): Promise<ParsedExcelData> => {
 
       try {
         const data = event.target.result;
-        const workbook = (window as any).XLSX.read(data, {
+        const workbook = XLSX.read(data, {
           type: 'binary',
           cellDates: true,
         });
@@ -25,7 +27,7 @@ export const parseExcelFile = (file: File): Promise<ParsedExcelData> => {
         const worksheet = workbook.Sheets[sheetName];
         
         // Use sheet_to_json to get an array of objects
-        const jsonData: TableRow[] = (window as any).XLSX.utils.sheet_to_json(worksheet, {
+        const jsonData: TableRow[] = XLSX.utils.sheet_to_json(worksheet, {
           raw: false, // Use formatted strings for dates
           dateNF: 'mm/dd/yyyy' // format for dates
         });

@@ -1,5 +1,9 @@
 {
   "name": "report-generator-mykap",
   "version": "0.1.0",
-  "private": true
+  "private": true,
+  "scripts": {
+    "dev": "npx serve .",
+    "build": "echo 'No build needed - static files only'"
+  }
 }

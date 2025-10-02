@@ -1,4 +1,33 @@
 {
+  "headers": [
+    {
+      "source": "/(.*)\\.tsx",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "text/babel"
+        }
+      ]
+    },
+    {
+      "source": "/(.*)\\.ts",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "text/babel"
+        }
+      ]
+    },
+    {
+      "source": "/(.*)\\.jsx",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "text/babel"
+        }
+      ]
+    }
+  ],
   "rewrites": [
     {
       "source": "/(.*)",
